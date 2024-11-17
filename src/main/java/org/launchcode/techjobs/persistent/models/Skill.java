@@ -11,7 +11,7 @@ public class Skill extends AbstractEntity {
 
     @NotNull
     @NotBlank
-    @Size(min = 3, max = 500)
+    @Size(max = 500)
     public String description;
 
     //also check here if the regular constructor is needed
