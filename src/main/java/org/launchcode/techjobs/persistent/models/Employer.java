@@ -9,15 +9,17 @@ import jakarta.validation.constraints.Size;
 public class Employer extends AbstractEntity {
 
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Location is required")
+    @NotBlank(message = "Location is required")
     @Size(min = 3, max = 150)
     private String location;
 
 //    may need the regular constructor here
-//    public Employer(String location){
-//        this.location = location;
-//    }
+
+
+    public Employer(String location) {
+        this.location = location;
+    }
 
     public Employer(){}
 

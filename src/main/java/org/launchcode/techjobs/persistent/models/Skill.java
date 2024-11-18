@@ -9,19 +9,26 @@ import jakarta.validation.constraints.Size;
 public class Skill extends AbstractEntity {
 
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Description is required")
+    @NotBlank(message = "Description is required")
     @Size(max = 500)
     public String description;
 
+
     //also check here if the regular constructor is needed
+
+
+    public Skill(String description) {
+        this.description = description;
+    }
+
     public Skill(){}
 
-    public @NotNull @NotBlank @Size(min = 3, max = 500) String getDescription() {
+    public @NotNull @NotBlank @Size(max = 500) String getDescription() {
         return description;
     }
 
-    public void setDescription(@NotNull @NotBlank @Size(min = 3, max = 500) String description) {
+    public void setDescription(@NotNull @NotBlank @Size(max = 500) String description) {
         this.description = description;
     }
 }

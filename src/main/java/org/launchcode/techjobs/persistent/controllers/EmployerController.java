@@ -27,6 +27,7 @@ public class EmployerController {
         model.addAttribute("title", "All Employers");
         model.addAttribute("employers", employerRepository.findAll());
         return "employers/index";
+//        return "redirect:";
     }
 
     @GetMapping("add")
@@ -50,7 +51,9 @@ public class EmployerController {
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
-        Optional optEmployer = null;
+//        optEmployer is currently initialized to null.
+//        Replace this using the .findById() method with the right argument to look for the given employer object from the data layer.
+        Optional optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);
