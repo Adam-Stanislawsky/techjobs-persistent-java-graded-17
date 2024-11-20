@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,7 +26,8 @@ public class EmployerController {
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("title", "All Employers");
-        model.addAttribute("employers", employerRepository.findAll());
+        List employers = (List<Employer>) employerRepository.findAll();
+        model.addAttribute("employers", employers);
         return "employers/index";
 //        return "redirect:";
     }
@@ -41,6 +43,7 @@ public class EmployerController {
                                     Errors errors, Model model) {
 
         if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Employer");
             return "employers/add";
         }
 
@@ -53,7 +56,7 @@ public class EmployerController {
 
 //        optEmployer is currently initialized to null.
 //        Replace this using the .findById() method with the right argument to look for the given employer object from the data layer.
-        Optional optEmployer = employerRepository.findById(employerId);
+        Optional<Employer> optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);

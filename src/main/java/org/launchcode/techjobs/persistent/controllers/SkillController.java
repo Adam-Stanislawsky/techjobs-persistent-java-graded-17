@@ -52,8 +52,7 @@ public class SkillController {
     @GetMapping("view/{skillId}")
     public String displayViewSkill(Model model, @PathVariable int skillId) {
 
-//        optSkill is currently initialized to null.
-//        Replace this using the .findById() method with the right argument to look for the given skill object from the data layer.
+
         Optional optSkill = skillRepository.findById(skillId);
         if (optSkill.isPresent()) {
             Skill skill = (Skill) optSkill.get();

@@ -2,6 +2,7 @@ package org.launchcode.techjobs.persistent.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -11,7 +12,10 @@ public class Job extends AbstractEntity {
 
     @ManyToOne
     private Employer employer;
-    private String skills;
+
+    @ManyToMany
+    @NotNull(message = "Please select a skill to proceed")
+    private List<Skill> skills;
 
 
     public Job() {
@@ -19,13 +23,14 @@ public class Job extends AbstractEntity {
 
     // Initialize the id and value fields.
 //    public Job(String anEmployer, String someSkills) {
-//        // super isn't necessary? maybe I'm wrong
+//
 //        super();
 //        this.employer = employer;
 //        this.skills = someSkills;
 //    }
 
-    public Job(Employer anEmployer, String someSkills) {
+    public Job(Employer anEmployer, List<Skill> someSkills) {
+        super();
         this.employer = anEmployer;
         this.skills = someSkills;
     }
@@ -52,12 +57,20 @@ public class Job extends AbstractEntity {
         this.employer = employer;
     }
 
-    public String getSkills() {
+    public List<Skill> getSkills() {
         return skills;
     }
 
-    public void setSkills(String skills) {
+    public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
+
+    //    public String getSkills() {
+//        return skills;
+//    }
+//
+//    public void setSkills(String skills) {
+//        this.skills = skills;
+//    }
 
 }
