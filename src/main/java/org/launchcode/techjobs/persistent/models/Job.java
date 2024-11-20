@@ -1,21 +1,16 @@
 package org.launchcode.techjobs.persistent.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-public class Job {
+public class Job extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private int id;
 
-    private String name;
-    private String employer;
+    @ManyToOne
+    private Employer employer;
     private String skills;
 
 
@@ -23,27 +18,37 @@ public class Job {
     }
 
     // Initialize the id and value fields.
-    public Job(String anEmployer, String someSkills) {
-        super();
+//    public Job(String anEmployer, String someSkills) {
+//        // super isn't necessary? maybe I'm wrong
+//        super();
+//        this.employer = employer;
+//        this.skills = someSkills;
+//    }
+
+    public Job(Employer anEmployer, String someSkills) {
         this.employer = anEmployer;
         this.skills = someSkills;
     }
 
     // Getters and setters.
-    
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getEmployer() {
+
+
+//    public String getEmployer() {
+//        return employer;
+//    }
+//
+//    public void setEmployer(String employer) {
+//        this.employer = employer;
+//    }
+
+
+    public Employer getEmployer() {
         return employer;
     }
 
-    public void setEmployer(String employer) {
+    public void setEmployer(Employer employer) {
         this.employer = employer;
     }
 
