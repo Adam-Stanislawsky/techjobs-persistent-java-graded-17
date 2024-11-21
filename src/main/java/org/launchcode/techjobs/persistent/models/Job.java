@@ -22,12 +22,7 @@ public class Job extends AbstractEntity {
     }
 
     // Initialize the id and value fields.
-//    public Job(String anEmployer, String someSkills) {
-//
-//        super();
-//        this.employer = employer;
-//        this.skills = someSkills;
-//    }
+
 
     public Job(Employer anEmployer, List<Skill> someSkills) {
         super();
