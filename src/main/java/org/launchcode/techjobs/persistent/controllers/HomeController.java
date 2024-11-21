@@ -64,6 +64,7 @@ public class HomeController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
+
             List employers = (List<Employer>) employerRepository.findAll();
             model.addAttribute("employers", employers);
 
@@ -80,6 +81,7 @@ public class HomeController {
 
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         newJob.setSkills(skillObjs);
+
 
         jobRepository.save(newJob);
 
